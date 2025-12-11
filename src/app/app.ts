@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal,computed } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,16 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.css'
 })
 export class App {
-  x=10;
-  y=20;
-  z=this.x+this.y;
+  x=signal(10);
+  y=signal(20);
+  z=computed(()=>this.x()+this.y());
 
   showValue() {
-    console.log(this.z);
-    this.x=100;    
-    console.log(this.z);
+    console.log('Initial x value:', this.x());
+    console.log('Initial y value:', this.y());
+    console.log('Computed z value:', this.z());
+    this.x.set(100);
+    console.log('After updating x, x value:', this.x());
+    console.log('After updating x, Computed z value:', this.z());
   }
 }
