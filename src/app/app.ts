@@ -7,5 +7,13 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('computedsignal-app');
+  x=10;
+  y=20;
+  z=this.x+this.y;
+
+  showValue() {
+    console.log(this.z);
+    this.x=100;    
+    console.log(this.z);
+  }
 }
